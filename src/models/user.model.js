@@ -5,6 +5,18 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true,
     unique: true
+  },
+  firstName: {
+    type: String
+  },
+  lastName: {
+    type: String
+  },
+  county: {
+    type: String
+  },
+  city: {
+    type: String
   }
 });
 
