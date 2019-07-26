@@ -6,7 +6,7 @@ exports.findMe = (req, res) => {
   res.json(req.user);
 };
 
-exports.updateMe = (req, res) => {
+exports.updateMe = (req, res, next) => {
   User.findByIdAndUpdate(
     req.user.id,
     {
@@ -22,31 +22,28 @@ exports.updateMe = (req, res) => {
       else res.json(sanitizeUser(user));
     })
     .catch(error => {
-      res.json({ message: "An error occured" });
-      console.log(error);
+      next(error);
     });
 };
 
-exports.deleteMe = (req, res) => {
+exports.deleteMe = (req, res, next) => {
   User.findOneAndDelete({ _id: req.user.id })
     .then(user => {
       if (!user) res.status(404).json({ message: "Not found" });
       else res.json(sanitizeUser(user));
     })
     .catch(error => {
-      res.json({ message: "An error occured" });
-      console.log(error);
+      next(error);
     });
 };
 
-exports.findOne = (req, res) => {
+exports.findOne = (req, res, next) => {
   User.findById(req.params.userId)
     .then(user => {
       if (!user) res.status(404).json({ message: "Not found" });
       else res.json(sanitizeUser(user));
     })
     .catch(error => {
-      res.json({ message: "An error occured" });
-      console.log(error);
+      next(error);
     });
 };

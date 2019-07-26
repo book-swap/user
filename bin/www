@@ -1,7 +1,7 @@
 const http = require('http');
 const app = require('../src/app');
 
-const port = parseInt(process.env.PORT, 10) || 8082;
+const port = parseInt(process.env.PORT, 10) || 8080;
 app.set('port', port);
 
 // Create http server for the express app and listen

@@ -37,12 +37,10 @@ app.use(
         : "http://localhost:8080"
   })
 );
-
-// API Routes
 app.use(passport.initialize());
 passport.use(passportJwtStrategy);
 app.use(passport.authenticate("jwt", { session: false }));
-app.use(router);
+app.use(router); // API Routes
 
 // Error handler
 app.use((err, req, res, next) => {
